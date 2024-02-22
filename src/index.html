@@ -18,16 +18,23 @@
     <button  type="submit" class="button">Search</button>
   </form>
 
-  <div class="loader-container">
-    <div class="loadeer"></div>
-  </div>
-
   <div class="container gallery-container">
-    <ul class="gallery-cards">
+    <ul class="gallery-list">
     </ul>
   </div>
 
+<div class="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div class="loader-container">
+    <button type="button" class="btn-load-more" data-action="load-more">
+      <span class="label">Load more</span>
+    </button>
+  </div>
+
   <script type="module" src="./main.js"></script>
+  <script type="module" src="./js/refs.js"></script>
   <script type="module" src="./js/pixabay-api.js"></script>
   <script type="module" src="./js/render-function.js"></script>
 </body>
