@@ -1,9 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-function galleryTemplate(image) {
+function galleryTemplate(hits) {
     const { imageUrl, webformatURL, alt, likes, views, comments, downloads } =
-        image;
+        hits;
 
     return `<li class="gallery-item">
     <div class="gallery">
@@ -25,8 +25,8 @@ function galleryTemplate(image) {
     </li>`;
 }
 
-export function galleresTemplate(images) {
-    return images.map(galleryTemplate).join('');
+export function galleresTemplate(hitses) {
+    return hitses.map(galleryTemplate).join('');
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {

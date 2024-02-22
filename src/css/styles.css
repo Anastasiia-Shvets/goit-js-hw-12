@@ -251,10 +251,10 @@ img {
   justify-content: center;
 }
 
-.hidden {
+/* .hidden {
   display: none;
   opacity: 0;
-}
+} */
 
 .label {
   font-family: "Montserrat", sans-serif;

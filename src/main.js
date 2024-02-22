@@ -26,12 +26,16 @@ async function onFotmSubmit(ev) {
     refs.loadElem.style.display = 'blok';
 
     const data = await searchGallery(query);
+
+    refs.listElem.innerHTML = '';
         renderImages(data);
+    
+    refs.loadElem.style.display = 'none';
     
     ev.target.reset();
 }
 
-function renderImages(images) {
-    const markup = galleresTemplate(images);
+function renderImages(hitses) {
+    const markup = galleresTemplate(hitses);
     refs.listElem.insertAdjacentHTML('beforeend', markup);
 }
