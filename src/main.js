@@ -18,36 +18,43 @@ async function onFotmSubmit(ev) {
 
     query = ev.target.elements.query.value.trim();
     page = 1;
-    showLoader();
+
     if (!query) {
-        iziToast.error({
-            title: 'Sorry',
-            message: 'Please enter text to search for.',
-            position: 'topRight',
-        });
+        showError('Please enter text to search for.');
         return;
     }
+    showLoader();
 
-    refs.loadElem.style.display = 'blok';
-
-    const data = await searchGallery(query, page);
-    console.log(data);
-    maxPage = Math.ceil().totalHits / 15;
-
-    refs.listElem.innerHTML = '';
-    renderImages(data);
-    hideLoader();
+    try {
+        const data = await searchGallery(query, page);
+        maxPage = Math.ceil(data.totalHits / 15);
+        if (data.length === 0) {
+            showError(
+                'Sorry, there are no images matching your search query. Please try again!'
+            );
+            hideLoader();
+            return;
+        }
+        
+        refs.listElem.innerHTML = '';
+        renderImages(data);
+    } catch (error) {
+        showError(error.message);
+        maxPage = 0;
+        refs.listElem.innerHTML = '';
+    }
     checkBtnVisibleStatus();
-    
-    refs.loadElem.style.display = 'none';
+    hideLoader();
     
     ev.target.reset();
 }
 
 async function onLoadMoreClick() {
     page += 1;
+    showLoader();
     const data = await searchGallery(query, page);
     renderImages(data);
+    hideLoader();
     checkBtnVisibleStatus();
 }
 
@@ -64,16 +71,28 @@ function hideLoadBtn() {
     refs.btnLoadMore.classList.add('hidden');
 }
 
-function showLoader() {
-
-}
-
-function hideLoader(){}
-
 function checkBtnVisibleStatus() {
     if (page >= maxPage) {
         hideLoadBtn();
+        showError("We're sorry, but you've reached the end of search results.");
     } else {
         showLoadBtn();
     }
 }
+
+function showLoader() {
+    refs.loadElem.classList.remove('hidden');
+}
+
+function hideLoader() {
+    refs.loadElem.classList.add('hidden');
+}
+
+function showError(msg) {
+    iziToast.error({
+        title: 'Error',
+        message: msg,
+        position: 'topRight',
+    });
+}
+
