@@ -249,12 +249,13 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 36px;
 }
 
-/* .hidden {
+.hidden {
   display: none;
   opacity: 0;
-} */
+}
 
 .label {
   font-family: "Montserrat", sans-serif;

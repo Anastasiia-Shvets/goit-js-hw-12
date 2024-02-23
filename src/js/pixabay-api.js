@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function searchGallery(query) {
+export async function searchGallery(query, currentPage) {
     const API_KEY = '42280765-41e7252ac679e023dc9db9847';
     const BASE_URL = 'https://pixabay.com';
     const END_POINT = '/api/';
@@ -12,7 +12,7 @@ export async function searchGallery(query) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        page: 1,
+        page: currentPage,
         per_page: 15,
     };
 
