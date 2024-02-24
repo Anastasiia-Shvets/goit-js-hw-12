@@ -16,10 +16,11 @@ function galleryTemplate(hit) {
     />
     </a>
     <div class="gallery-info">
+    <div class="gallery-info">
     <ul class="list-item">Likes<li class="item">${likes}</li></ul>
-    <ul class="list-item">Likes<li class="item">${views}</li></ul>
-    <ul class="list-item">Likes<li class="item">${comments}</li></ul>
-    <ul class="list-item">Likes<li class="item">${downloads}</li></ul>
+    <ul class="list-item">Views<li class="item">${views}</li></ul>
+    <ul class="list-item">Comments<li class="item">${comments}</li></ul>
+    <ul class="list-item">Downloads<li class="item">${downloads}</li></ul>
     </div>
     </div>
     </li>`;
