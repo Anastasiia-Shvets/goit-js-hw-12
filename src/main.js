@@ -27,7 +27,6 @@ async function onFotmSubmit(ev) {
 
     try {
         const data = await searchGallery(query, page);
-        maxPage = Math.ceil(data.totalHits / 15);
         if (data.length === 0) {
             showError(
                 'Sorry, there are no images matching your search query. Please try again!'
@@ -35,7 +34,7 @@ async function onFotmSubmit(ev) {
             hideLoader();
             return;
         }
-        
+        maxPage = Math.ceil(data.totalHits / 15);
         refs.listElem.innerHTML = '';
         renderImages(data);
     } catch (error) {
@@ -43,9 +42,8 @@ async function onFotmSubmit(ev) {
         maxPage = 0;
         refs.listElem.innerHTML = '';
     }
-    checkBtnVisibleStatus();
     hideLoader();
-    
+    checkBtnVisibleStatus();
     ev.target.reset();
 }
 
