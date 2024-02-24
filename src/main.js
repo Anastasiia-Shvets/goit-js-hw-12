@@ -27,6 +27,7 @@ async function onFotmSubmit(ev) {
 
     try {
         const data = await searchGallery(query, page);
+        console.log(data);
         if (data.length === 0) {
             showError(
                 'Sorry, there are no images matching your search query. Please try again!'
