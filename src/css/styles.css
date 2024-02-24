@@ -209,6 +209,8 @@ img {
 .gallery-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   padding: 0 156px;
   gap: 24px;
   background: #FFF;
@@ -222,7 +224,8 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #808080;
+  border: 1px solid #d6dbdb;
+  border-radius: 5px;
 }
 
 .item-list {
@@ -235,6 +238,17 @@ img {
   width: 360px;
   height: 200px;
 }
+
+.gallery-info{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {}
+
+.list-item {}
 
 .item-text {
   border-color: #f9f5f5ed;

@@ -18,19 +18,7 @@ export async function searchGallery(query, currentPage) {
 
     try {
         const response = await axios.get(url, { params });
-
-        const photosArray = response.data.hits.map(photo => ({
-            id: photo.id,
-            imageUrl: photo.largeImageURL,
-            webformatURL: photo.webformatURL,
-            alt: photo.tags,
-            likes: photo.likes,
-            views: photo.views,
-            comments: photo.comments,
-            downloads: photo.downloads,
-        }));
-
-        return photosArray;
+        return response.data;
     } catch (error) {
         console.error('There has been a problem with your axios request:', error);
         throw error;

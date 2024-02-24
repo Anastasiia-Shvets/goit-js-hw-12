@@ -57,8 +57,8 @@ async function onLoadMoreClick() {
     checkBtnVisibleStatus();
 }
 
-function renderImages(hitses) {
-    const markup = galleresTemplate(hitses);
+function renderImages(hits) {
+    const markup = galleresTemplate(hits);
     refs.listElem.insertAdjacentHTML('beforeend', markup);
 }
 

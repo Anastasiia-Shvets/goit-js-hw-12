@@ -1,9 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-function galleryTemplate(hits) {
+function galleryTemplate(hit) {
     const { imageUrl, webformatURL, alt, likes, views, comments, downloads } =
-        hits;
+        hit;
 
     return `<li class="gallery-item">
     <div class="gallery">
@@ -16,17 +16,17 @@ function galleryTemplate(hits) {
     />
     </a>
     <div class="gallery-info">
-    <p class="item-text">Likes: ${likes}</p>
-    <p class="item-text">Views: ${views}</p>
-    <p class="item-text">Comments: ${comments}</p>
-    <p class="item-text">Downloads: ${downloads}</p>
+    <ul class="list-item">Likes<li class="item">${likes}</li></ul>
+    <ul class="list-item">Likes<li class="item">${views}</li></ul>
+    <ul class="list-item">Likes<li class="item">${comments}</li></ul>
+    <ul class="list-item">Likes<li class="item">${downloads}</li></ul>
     </div>
     </div>
     </li>`;
 }
 
-export function galleresTemplate(hitses) {
-    return hitses.map(galleryTemplate).join('');
+export function galleresTemplate(hits) {
+    return hits.map(galleryTemplate).join('');
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
