@@ -26,12 +26,6 @@ function galleryTemplate(hit) {
     </li>`;
 }
 
-export function galleresTemplate(hits) {
+export function hitsTemplate(hits) {
     return hits.map(galleryTemplate).join('');
 }
-
-const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-});
-lightbox.refresh();

@@ -15,29 +15,26 @@ refs.btnLoadMore.addEventListener('click', onLoadMoreClick);
 
 async function onFotmSubmit(ev) {
     ev.preventDefault();
-
     query = ev.target.elements.query.value.trim();
     page = 1;
-
     if (!query) {
         showError('Please enter text to search for.');
         return;
     }
+
     showLoader();
 
     try {
         const data = await searchGallery(query, page);
-        console.log(data);
-        if (data.length === 0) {
+        if (data.totalHits === 0) {
             showError(
                 'Sorry, there are no images matching your search query. Please try again!'
             );
-            hideLoader();
             return;
         }
         maxPage = Math.ceil(data.totalHits / 15);
         refs.listElem.innerHTML = '';
-        renderImages(data);
+        renderImages(data.hits);
     } catch (error) {
         showError(error.message);
         maxPage = 0;
@@ -45,6 +42,7 @@ async function onFotmSubmit(ev) {
     }
     hideLoader();
     checkBtnVisibleStatus();
+
     ev.target.reset();
 }
 
@@ -52,7 +50,7 @@ async function onLoadMoreClick() {
     page += 1;
     showLoader();
     const data = await searchGallery(query, page);
-    renderImages(data);
+    renderImages(data.hits);
     hideLoader();
     checkBtnVisibleStatus();
 }
