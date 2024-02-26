@@ -29,7 +29,7 @@ async function onFotmSubmit(ev) {
         return;
     }
 
-    showLoader();
+    // showLoader();
 
     try {
         const data = await searchGallery(query, page);
@@ -49,7 +49,7 @@ async function onFotmSubmit(ev) {
         refs.listElem.innerHTML = '';
     }
     checkBtnVisibleStatus();
-
+    hideLoader();
     ev.target.reset();
 }
 
@@ -60,6 +60,7 @@ async function onLoadMoreClick() {
     renderImages(data.hits);
     hideLoader();
     checkBtnVisibleStatus();
+
     const { height: cardHeight } = document
         .querySelector('.gallery')
         .firstElementChild.getBoundingClientRect();
