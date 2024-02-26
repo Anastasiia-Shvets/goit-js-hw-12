@@ -1,5 +1,4 @@
 
-
 function galleryTemplate(hit) {
     const {
         largeImageURL,
@@ -32,6 +31,5 @@ function galleryTemplate(hit) {
 }
 
 export function hitsTemplate(hits) {
-    return hits.map(galleryTemplate).join('');
+return hits.map(galleryTemplate).join('');
 }
-

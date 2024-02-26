@@ -1,6 +1,10 @@
 import iziToast from "izitoast";
 import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
+
+let lightbox;
+
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 
@@ -25,7 +29,7 @@ async function onFotmSubmit(ev) {
         return;
     }
 
-    showLoader();
+    hideLoader();
 
     try {
         const data = await searchGallery(query, page);
@@ -43,7 +47,6 @@ async function onFotmSubmit(ev) {
         maxPage = 0;
         refs.listElem.innerHTML = '';
     }
-    hideLoader();
     checkBtnVisibleStatus();
 
     ev.target.reset();
@@ -67,14 +70,24 @@ async function onLoadMoreClick() {
 }
 
 function renderImages(hits) {
+    const options = {
+        captions: true,
+        captionSelector: 'img',
+        captionType: 'attr',
+        captionsData: 'alt',
+        captionPosition: 'bottom',
+        animation: 250,
+    };
     const markupGallery = hitsTemplate(hits);
     refs.listElem.insertAdjacentHTML('beforeend', markupGallery);
 
-    const lightbox = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-    });
-    lightbox.refresh();
+    if (lightbox) {
+        lightbox.destroy();
+    }
+    
+    lightbox = new SimpleLightbox('.gallery a', options);
+    
+    
 }
 
 function showLoadBtn() {
