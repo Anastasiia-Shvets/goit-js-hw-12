@@ -1,5 +1,7 @@
 import iziToast from "izitoast";
 import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 
 import { refs } from "./js/refs";
@@ -54,12 +56,25 @@ async function onLoadMoreClick() {
     renderImages(data.hits);
     hideLoader();
     checkBtnVisibleStatus();
-    skrollBayCard();
+    const { height: cardHeight } = document
+        .querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+    });
 }
 
 function renderImages(hits) {
-    const markup = hitsTemplate(hits);
-    refs.listElem.insertAdjacentHTML('beforeend', markup);
+    const markupGallery = hitsTemplate(hits);
+    refs.listElem.insertAdjacentHTML('beforeend', markupGallery);
+
+    const lightbox = new SimpleLightbox('.gallery a', {
+        captionsData: 'alt',
+        captionDelay: 250,
+    });
+    lightbox.refresh();
 }
 
 function showLoadBtn() {
@@ -95,11 +110,4 @@ function showError(msg) {
     });
 }
 
-const firstCard = document.querySelector('.gallery-card');
-const cardHeight = firstCard.getBoundingClientRect().height;
-function skrollBayCard() {
-    window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
-    });
-}
+
