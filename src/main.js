@@ -29,7 +29,7 @@ async function onFotmSubmit(ev) {
         return;
     }
 
-    // showLoader();
+    showLoader();
 
     try {
         const data = await searchGallery(query, page);
