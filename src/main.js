@@ -88,7 +88,7 @@ function hideLoadBtn() {
 function checkBtnVisibleStatus() {
     if (page >= maxPage) {
         hideLoadBtn();
-        showError("We're sorry, but you've reached the end of search results.");
+        alert();
     } else {
         showLoadBtn();
     }
@@ -106,6 +106,13 @@ function showError(msg) {
     iziToast.error({
         title: 'Error',
         message: msg,
+        position: 'topRight',
+    });
+}
+
+function alert() {
+    iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
         position: 'topRight',
     });
 }

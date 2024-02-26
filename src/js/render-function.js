@@ -4,7 +4,7 @@ function galleryTemplate(hit) {
     const {
         largeImageURL,
         webformatURL,
-        alt,
+        tags,
         likes,
         views,
         comments,
@@ -17,7 +17,7 @@ function galleryTemplate(hit) {
     <img
         class="gallery-image"
         src="${webformatURL}"
-        alt="${alt}"
+        alt="${tags}"
         width=360
     />
     </a>
