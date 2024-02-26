@@ -29,7 +29,7 @@ async function onFotmSubmit(ev) {
         return;
     }
 
-    hideLoader();
+    showLoader();
 
     try {
         const data = await searchGallery(query, page);
@@ -37,6 +37,7 @@ async function onFotmSubmit(ev) {
             showError(
                 'Sorry, there are no images matching your search query. Please try again!'
             );
+            hideLoader();
             return;
         }
         maxPage = Math.ceil(data.totalHits / 15);
