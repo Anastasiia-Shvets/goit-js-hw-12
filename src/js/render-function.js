@@ -6,7 +6,7 @@ function galleryTemplate(hit) {
         hit;
 
     return `<li class="gallery-item">
-    <div class="gallery">
+    <div class="gallery-card">
     <a class="gallery-link" href="${imageUrl}">
     <img
         class="gallery-image"
@@ -15,7 +15,6 @@ function galleryTemplate(hit) {
         width=360
     />
     </a>
-    <div class="gallery-info">
     <div class="gallery-info">
     <ul class="list-item">Likes<li class="item">${likes}</li></ul>
     <ul class="list-item">Views<li class="item">${views}</li></ul>
@@ -29,3 +28,4 @@ function galleryTemplate(hit) {
 export function hitsTemplate(hits) {
     return hits.map(galleryTemplate).join('');
 }
+

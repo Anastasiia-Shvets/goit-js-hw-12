@@ -4,7 +4,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { refs } from "./js/refs";
 import { searchGallery } from "./js/pixabay-api";
-import { galleresTemplate } from "./js/render-function";
+import { hitsTemplate } from "./js/render-function";
+
 
 let query;
 let page;
@@ -53,10 +54,11 @@ async function onLoadMoreClick() {
     renderImages(data.hits);
     hideLoader();
     checkBtnVisibleStatus();
+    skrollBayCard();
 }
 
 function renderImages(hits) {
-    const markup = galleresTemplate(hits);
+    const markup = hitsTemplate(hits);
     refs.listElem.insertAdjacentHTML('beforeend', markup);
 }
 
@@ -93,3 +95,11 @@ function showError(msg) {
     });
 }
 
+const firstCard = document.querySelector('.gallery-card');
+const cardHeight = firstCard.getBoundingClientRect().height;
+function skrollBayCard() {
+    window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+    });
+}
