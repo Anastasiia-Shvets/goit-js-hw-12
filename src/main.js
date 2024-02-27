@@ -17,10 +17,10 @@ let query;
 let page;
 let maxPage;
 
-refs.formElem.addEventListener('submit', onFotmSubmit);
+refs.formElem.addEventListener('submit', onFormSubmit);
 refs.btnLoadMore.addEventListener('click', onLoadMoreClick);
 
-async function onFotmSubmit(ev) {
+async function onFormSubmit(ev) {
     ev.preventDefault();
     query = ev.target.elements.query.value.trim();
     page = 1;
